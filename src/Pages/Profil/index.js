@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile } from '../../Services/authSlice';
 import Header from "../../Containers/Header";
 import Footer from "../../Containers/Footer";
 import './index.css';
+import { useNavigate } from "react-router-dom";
 
 const Page = () => {
     const { user } = useSelector((state) => state.auth);
     const [isEditing, setIsEditing] = useState(false);
     const [userName, setUserName] = useState(user?.body?.userName || 'User');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token || !user) {
+            navigate('/connexion');
+        }
+    });
+    
     const dispatch = useDispatch();
 
     const handleEditClick = () => {

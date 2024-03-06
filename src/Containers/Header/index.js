@@ -26,10 +26,16 @@ const Header = () => {
       </Link>
       <div>
         {user ? (
-          <Link to="/" className="main-nav-item" onClick={handleLogout}>
-            <i className="fa fa-user-circle"></i>
-            Logout
-          </Link>
+          <>
+            <Link to="/profil" className="main-nav-item">
+              <i className="fa fa-user-circle"></i>
+              Profile
+            </Link>
+            <Link to="/" className="main-nav-item" onClick={handleLogout}>
+              <i className="fa fa-user-circle"></i>
+              Logout
+            </Link>
+          </>
         ) : (
           <Link to="/connexion" className="main-nav-item">
             <i className="fa fa-user-circle"></i>
